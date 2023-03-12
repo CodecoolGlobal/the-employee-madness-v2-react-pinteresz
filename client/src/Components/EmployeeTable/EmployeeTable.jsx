@@ -17,7 +17,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
    function handleLevelChange(event){
       setLevel(event.target.value)
       // with toUpperCase it will be case-insensitive
-      const newFilteredEmployees = [...employees].filter(
+      const newFilteredEmployees = [...filteredEmployees].filter(
           (e) => e.level.toUpperCase().includes(event.target.value.toUpperCase())
       )
       // before mapping through to display the employees
@@ -31,7 +31,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
    function handlePositionChange(event){
       setPosition(event.target.value)
       // with toUpperCase it will be case-insensitive
-      const newFilteredEmployees = [...employees].filter(
+      const newFilteredEmployees = [...filteredEmployees].filter(
           (e) => e.position.toUpperCase().includes(event.target.value.toUpperCase())
       )
       // before mapping through to display the employees
@@ -45,7 +45,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
    function handlelevelAndPositionChange(event){
     setLevelAndPosition(event.target.value)
     // with toUpperCase it will be case-insensitive
-    const newFilteredEmployees = [...employees].filter(
+    const newFilteredEmployees = [...filteredEmployees].filter(
         (e) => e.level.toUpperCase().includes(event.target.value.toUpperCase()) || e.position.toUpperCase().includes(event.target.value.toUpperCase())
     )
     // before mapping through to display the employees
@@ -54,12 +54,83 @@ const EmployeeTable = ({ employees, onDelete }) => {
     )
   }
 
-  //
- function handleFirstNameRearrange(e) {
-  e.preventDefault()
-  const newSortedEmployees = [...employees].map(employee => employee.name.split(" "))
-  console.log(newSortedEmployees);
- }
+    // Rearange by First Name
+    function handleFirstNameRearrange(e) {
+      e.preventDefault()
+      console.log(employees); 
+      const newSortedEmployees =[...filteredEmployees].sort(function (a, b) {
+          if(a.name < b.name){
+            return -1
+          }
+          else if(a.name > b.name){
+            return 1
+          }
+          else {
+            return 0;
+          }
+        })
+      //console.log(newSortedEmployees);
+      setFilteredEmployees(newSortedEmployees)
+    }
+
+
+    // Rearange by Last Name
+    function handleLastNameRearrange(e) {
+      e.preventDefault()
+      //console.log(employees); 
+      const newSortedEmployees =[...filteredEmployees].sort(function (a, b) {
+        if(a.name.split(" ")[a.name.split(" ").length-1] < b.name.split(" ")[a.name.split(" ").length-1]){
+          return -1
+        }
+        else if(a.name.split(" ")[a.name.split(" ").length-1] > b.name.split(" ")[a.name.split(" ").length-1]){
+          return 1
+        }
+        else {
+          return 0;
+        }
+      })
+      //console.log(newSortedEmployees);
+      setFilteredEmployees(newSortedEmployees)
+    }
+
+    //  Rearange by Level
+    function handleLevelRearrange(e) {
+      e.preventDefault()
+      //console.log(employees); 
+      const newSortedEmployees =[...filteredEmployees].sort(function (a, b) {
+        if(a.level < b.level){
+          return -1
+        }
+        else if(a.level > b.level){
+          return 1
+        }
+        else {
+          return 0;
+        }
+      })
+      //console.log(newSortedEmployees);
+      setFilteredEmployees(newSortedEmployees)
+    }
+
+     //  Rearange by Position
+     function handlePositionRearrange(e) {
+      e.preventDefault()
+      //console.log(employees); 
+      const newSortedEmployees =[...filteredEmployees].sort(function (a, b) {
+        if(a.position < b.position){
+          return -1
+        }
+        else if(a.position > b.position){
+          return 1
+        }
+        else {
+          return 0;
+        }
+      })
+      //console.log(newSortedEmployees);
+      setFilteredEmployees(newSortedEmployees)
+    }
+
 
 
   return (
@@ -70,15 +141,15 @@ const EmployeeTable = ({ employees, onDelete }) => {
           <th>Name
             <button onClick={handleFirstNameRearrange}>Rearr. by First Name</button>
             <button>Rearr. by Middle Name</button>
-            <button>Rearr. by Last Name</button>
+            <button onClick={handleLastNameRearrange}>Rearr. by Last Name</button>
           </th>
           <th>
             <input type="text" placeholder="Filter by Level" value={level} onChange={handleLevelChange}/>
-            <button>Rearrange by Level</button>
+            <button onClick={handleLevelRearrange}>Rearrange by Level</button>
           </th>
           <th>
             <input type="text" placeholder="Filter by Position" value={position} onChange={handlePositionChange}/>
-            <button>Rearrange by Position</button>
+            <button onClick={handlePositionRearrange}>Rearrange by Position</button>
           </th>
           <th>
             <input type="text" placeholder="Filter by Level and Position" value={levelAndPosition} onChange={handlelevelAndPositionChange}/>
