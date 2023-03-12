@@ -74,6 +74,62 @@ const EmployeeTable = ({ employees, onDelete }) => {
     }
 
 
+// Rearange by Last Name
+function handleMiddleNameRearrange(e) {
+  e.preventDefault()
+  //console.log(employees); 
+  const newSortedEmployees =[...filteredEmployees].sort(function (a, b) {
+    if(a.name.split(" ").length > 2 && b.name.split(" ").length <= 2){
+      if(a.name.split(" ")[1] < b.name[0]){
+        return -1
+      }
+      else if(a.name.split(" ")[1] > b.name[0]){
+        return 1
+      }
+      else {
+        return 0;
+      }
+    }
+    else if(a.name.split(" ").length > 2 && b.name.split(" ").length > 2){
+      if(a.name.split(" ")[1] < b.name.split(" ")[1]){
+        return -1
+      }
+      else if(a.name.split(" ")[1] > b.name.split(" ")[1]){
+        return 1
+      }
+      else {
+        return 0;
+      }
+    }
+    else if(a.name.split(" ").length <= 2 && b.name.split(" ").length > 2){
+      if(a.name[0] < b.name.split(" ")[1]){
+        return -1
+      }
+      else if(a.name[0] > b.name.split(" ")[1]){
+        return 1
+      }
+      else {
+        return 0;
+      }
+    }
+    else{
+      if(a.name < b.name){
+        return -1
+      }
+      else if(a.name > b.name){
+        return 1
+      }
+      else {
+        return 0;
+      }
+    }
+   
+  })
+  //console.log(newSortedEmployees);
+  setFilteredEmployees(newSortedEmployees)
+}
+
+
     // Rearange by Last Name
     function handleLastNameRearrange(e) {
       e.preventDefault()
@@ -140,7 +196,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
         <tr>
           <th>Name
             <button onClick={handleFirstNameRearrange}>Rearr. by First Name</button>
-            <button>Rearr. by Middle Name</button>
+            <button onClick={handleMiddleNameRearrange}>Rearr. by Middle Name</button>
             <button onClick={handleLastNameRearrange}>Rearr. by Last Name</button>
           </th>
           <th>
