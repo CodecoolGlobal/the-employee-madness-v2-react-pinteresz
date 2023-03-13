@@ -10,7 +10,8 @@ const EmployeeTable = ({ employees, onDelete }) => {
    // to the name input field
    const [position, setPosition] = useState("")
    const [level, setLevel] = useState("")
-   const [levelAndPosition, setLevelAndPosition] = useState("")
+   //const [levelAndPosition, setLevelAndPosition] = useState("")
+   const [checked, setChecked] = useState(false)
 
    //Filtering by LEVEL
    // it reacts:) to te name change in the input field and filters the employees according to that
@@ -189,17 +190,24 @@ function handleMiddleNameRearrange(e) {
       setFilteredEmployees(newSortedEmployees)
     }
 
+//Checkbox
+function handleChecked(e){
+  e.preventDefault()
+  setChecked(e.target.checked)
+  
 
+}
 
   return (
   <div className="EmployeeTable">
     <table>
       <thead>
         <tr>
+          <th>Present</th>
           <th>Name
-            <button onClick={handleFirstNameRearrange}>Rearr. by First Name</button>
-            <button onClick={handleMiddleNameRearrange}>Rearr. by Middle Name</button>
-            <button onClick={handleLastNameRearrange}>Rearr. by Last Name</button>
+            <button onClick={handleFirstNameRearrange}>Rearr. by F. Name</button>
+            <button onClick={handleMiddleNameRearrange}>Rearr. by M. Name</button>
+            <button onClick={handleLastNameRearrange}>Rearr. by L. Name</button>
           </th>
           <th>
             <input type="text" placeholder="Filter by Level" value={level} onChange={handleLevelChange}/>
@@ -218,6 +226,7 @@ function handleMiddleNameRearrange(e) {
       <tbody>
         {filteredEmployees.map((employee) => (
           <tr key={employee._id}>
+            <td><input type="checkbox" onChange={handleChecked} ></input></td>
             <td>{employee.name}</td>
             <td>{employee.level}</td>
             <td>{employee.position}</td>
