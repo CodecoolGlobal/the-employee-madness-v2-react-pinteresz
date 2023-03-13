@@ -8,7 +8,15 @@ const EquipmentModel = require("../db/equipment.model");
 const { MONGO_URL, PORT = 8080 } = process.env;
 
 
-// Every superhero employee is listed on the /employees/superheroes route.
+EquipmentRouter.get("/", (req, res) => {
+    EquipmentModel.find()
+    .then(equipments => res.json(equipments))
+    .then(equipments => console.log(equipments))
+    .catch(err => res.status(400).json("Error"));
+})
+
+
+// Creating new equipment
 EquipmentRouter.post("/register", (req, res) => {
        const name = req.body.name;
        const type = req.body.type;

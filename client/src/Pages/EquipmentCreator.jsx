@@ -28,10 +28,24 @@ import { useState } from "react";
     return(
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Equipment's Name" onChange={e => setName(e.target.value)}></input>
-                <input type="text" placeholder="Equipment's Type" onChange={e => setType(e.target.value)}></input>
-                <input type="number" placeholder="Equipment's Amount" onChange={e => setAmount(e.target.value)}></input> 
-                <button type="submit">Register equipment</button>
+              <div className="control">
+                <label>Equipment's name</label>
+                <input type="text" placeholder="Name" onChange={e => setName(e.target.value)}></input>
+              </div>
+
+              <div className="control">
+                <label>Equipment's Type</label>
+                <input type="text" placeholder="Type" onChange={e => setType(e.target.value)}></input>
+              </div>
+
+              <div className="control">
+                <label>Equipment's Amount</label>
+                <input type="number" placeholder="Amount" onChange={e => setAmount(e.target.value)}></input> 
+              </div>
+               
+              <div className="buttons">
+              <button type="submit">Register equipment</button>
+              </div>           
             </form>
         </div>
     )

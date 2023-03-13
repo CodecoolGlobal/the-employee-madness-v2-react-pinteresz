@@ -5,7 +5,19 @@ import "./LayoutEquipment.css";
 
 const LayoutEquipment = () => (
   <div className="Layout">
-    <EquipmentCreator />
+    <nav>
+      <ul>
+        <li className="grow">
+          <Link to="/equipments">Equipments</Link>
+        </li>
+        <li>
+          <Link to="/equipments/register">
+            <button type="button">Register equipment</button>
+          </Link>
+        </li>
+      </ul>
+    </nav>
+    <Outlet />
   </div>
 );
 
