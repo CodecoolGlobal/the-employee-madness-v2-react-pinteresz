@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
 import Layout from "./Pages/Layout";
+import LayoutEquipment from "./Pages/LayoutEquipment";
 import ErrorPage from "./Pages/ErrorPage";
 import EmployeeList from "./Pages/EmployeeList";
 import EmployeeCreator from "./Pages/EmployeeCreator";
@@ -47,6 +48,18 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path: "/equipments/register",
+    element: <LayoutEquipment/>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/equipments/register",
+        element: <EmployeeList />,
+      },
+    ]
+
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
