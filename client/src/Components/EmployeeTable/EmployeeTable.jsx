@@ -42,17 +42,19 @@ const EmployeeTable = ({ employees, onDelete }) => {
 
    //Filtering by LEVEL and POSITION
    // it reacts:) to te name change in the input field and filters the employees according to that
-   function handlelevelAndPositionChange(event){
-    setLevelAndPosition(event.target.value)
-    // with toUpperCase it will be case-insensitive
-    const newFilteredEmployees = [...filteredEmployees].filter(
-        (e) => e.level.toUpperCase().includes(event.target.value.toUpperCase()) || e.position.toUpperCase().includes(event.target.value.toUpperCase())
-    )
-    // before mapping through to display the employees
-    setFilteredEmployees(
-        newFilteredEmployees
-    )
-  }
+  //  function handlelevelAndPositionChange(event){
+  //   setLevelAndPosition(event.target.value)
+  //   // with toUpperCase it will be case-insensitive
+  //   const newFilteredEmployees = [...filteredEmployees].filter(
+  //       (e) => e.level.toUpperCase().includes(event.target.value.toUpperCase()) || e.position.toUpperCase().includes(event.target.value.toUpperCase())
+  //   )
+  //   // before mapping through to display the employees
+  //   setFilteredEmployees(
+  //       newFilteredEmployees
+  //   )
+  // }
+
+  // <input type="text" placeholder="Filter by Level and Position" value={levelAndPosition} onChange={handlelevelAndPositionChange}/>
 
     // Rearange by First Name
     function handleFirstNameRearrange(e) {
@@ -208,7 +210,7 @@ function handleMiddleNameRearrange(e) {
             <button onClick={handlePositionRearrange}>Rearrange by Position</button>
           </th>
           <th>
-            <input type="text" placeholder="Filter by Level and Position" value={levelAndPosition} onChange={handlelevelAndPositionChange}/>
+           
           </th>
           <th />
         </tr>
