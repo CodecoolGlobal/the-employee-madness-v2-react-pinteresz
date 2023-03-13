@@ -76,3 +76,7 @@ main().catch((err) => {
 // Superheroes router
 const EquipmentRouter = require("./routes/equipments") // importing our router
 app.use("/equipments", EquipmentRouter) // to be able to use our router we need to use app.use()  //1st we set the route and then the name of our router
+
+// Employees router
+const EmployeesSearchRouter = require("./routes/employees")
+app.use("/employees", EmployeesSearchRouter)
