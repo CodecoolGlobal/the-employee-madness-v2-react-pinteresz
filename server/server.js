@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const EmployeeModel = require("./db/employee.model");
 
+
 const { MONGO_URL, PORT = 8080 } = process.env;
 
 if (!MONGO_URL) {
@@ -70,3 +71,8 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+
+
+// Superheroes router
+const EquipmentRouter = require("./routes/equipments") // importing our router
+app.use("/equipments", EquipmentRouter) // to be able to use our router we need to use app.use()  //1st we set the route and then the name of our router
