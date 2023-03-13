@@ -11,17 +11,17 @@ const { MONGO_URL, PORT = 8080 } = process.env;
 // Every employee with :search(name) is listed on the /employees/:search route.
 EmployeesSearchRouter.get("/:search", async (req, res) => {
        //console.log(req.params.search);
-       let searchObject = {}
+     let searchObject = {}
         searchObject["name"]=new RegExp(req.params.search,"i");
-        console.log(searchObject);
-        // (e) => e.position.toUpperCase().includes(event.target.value.toUpperCase())
-       const employee =  await EmployeeModel.find(searchObject)
-           console.log(employee);  
-           res.json(employee)
+        //console.log(searchObject);
+       
+     const employee =  await EmployeeModel.find(searchObject)
+    //console.log(employee);  
+    res.json(employee)
          /* .then(employee => res.json())
           .then(employee => console.log(employee))
           .catch(err => res.status(400).json("Error"));*/
-      })
+})
 
 
 
