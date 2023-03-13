@@ -1,32 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "./EquipmentTable.css"
 
 
 const EquipmentTable = ({ equipments, onDelete }) => {
 
   // to filtered employees
-  const [filteredEquipments, setFilteredEEquipments] = useState(equipments);
-
-   
-
- 
-
+  const [filteredEquipments, setFilteredEquipments] = useState(equipments);
 
   return (
   <div>
     <table>
       <thead>
         <tr>
-          <th>Name
-            
-          </th>
-          <th>Type
-            
-          </th>
-          <th>Amount
-            
-          </th>
-          
+          <th>Name</th>
+          <th>Type</th>
+          <th>Amount</th> 
           <th />
         </tr>
       </thead>
