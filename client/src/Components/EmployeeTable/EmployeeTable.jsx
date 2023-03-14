@@ -11,7 +11,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
    const [position, setPosition] = useState("")
    const [level, setLevel] = useState("")
    //const [levelAndPosition, setLevelAndPosition] = useState("")
-   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false)
+   
    
 
    //Filtering by LEVEL
@@ -192,12 +192,34 @@ function handleMiddleNameRearrange(e) {
     }
 
 //Checkbox
-function handleCheckboxCheck(e){
-  e.preventDefault()
-  setIsCheckboxChecked(current => !current)
+function handleCheckboxCheck(checked, employee){
+ 
+   const data = {present: checked};
+  fetch(`/api/employees/${employee._id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  .then((res) => res.json())
+  .then(employee => {
+    const newEmployees = [...filteredEmployees]
 
-  console.log("is it checked?" + e.target.checked);
-}
+    newEmployees.forEach(newEmployee => {
+      if(newEmployee._id === employee._id){
+        newEmployee.present = employee.present
+      }
+    })
+  console.log(employee);    
+
+    setFilteredEmployees(newEmployees)
+  })
+// react rerender eloidezese, plusz state modisitas
+// option A: update react state using response obj
+// option B: useEffect - trigger rerender
+};
+
 
   return (
   <div className="EmployeeTable">
@@ -227,7 +249,7 @@ function handleCheckboxCheck(e){
       <tbody>
         {filteredEmployees.map((employee) => (
           <tr key={employee._id}>
-            <td><input type="checkbox" /*onChange={handleCheckboxCheck}*/></input></td>
+            <td><input type="checkbox" checked={employee.present} onChange={e => handleCheckboxCheck(e.target.checked, employee)}></input></td>
             <td>{employee.name}</td>
             <td>{employee.level}</td>
             <td>{employee.position}</td>
@@ -253,6 +275,6 @@ export default EmployeeTable;
 
 // schema módosítás
 // újra populálni az adatbázis
-// front-end: chechbox defaultchecked (a schemaban az attandence)
+// front-end: chechbox defaultchecked (a schemaban a present kulcs)
 // beckend: az id-val elküldeni a checked-nem checkedet állítani 
 

@@ -5,7 +5,7 @@ import "./EquipmentTable.css"
 
 const EquipmentTable = ({ equipments, onDelete }) => {
 
-  // to filtered employees
+  // to filtered equipments
   const [filteredEquipments, setFilteredEquipments] = useState(equipments);
 
   return (

@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
   function EquipmentCreator(){
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const [name, setName] = useState("")
     const [type, setType] = useState("")
@@ -19,6 +22,10 @@ import { useState } from "react";
           body: JSON.stringify(data),
         })
         .then((res) => res.json())
+        .then(() => {
+          setLoading(false);
+          navigate("/equipments");
+        })
         .then(res => console.log(res))
         .catch(error => {
             console.log(error)

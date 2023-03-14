@@ -34,7 +34,16 @@ EquipmentRouter.post("/register", (req, res) => {
       })
 
 
-
+// Deleting equipments
+EquipmentRouter.delete("/:id", async (req, res, next) => {
+    try {
+      const equipment = await EquipmentModel.findById(req.params.id);
+      const deleted = await equipment.delete();
+      return res.json(deleted);
+    } catch (err) {
+      return next(err);
+    }
+  });
 
 
 module.exports = EquipmentRouter // exporting our router
