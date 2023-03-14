@@ -11,7 +11,8 @@ const EmployeeTable = ({ employees, onDelete }) => {
    const [position, setPosition] = useState("")
    const [level, setLevel] = useState("")
    //const [levelAndPosition, setLevelAndPosition] = useState("")
-   const [checked, setChecked] = useState(false)
+   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false)
+   
 
    //Filtering by LEVEL
    // it reacts:) to te name change in the input field and filters the employees according to that
@@ -191,11 +192,11 @@ function handleMiddleNameRearrange(e) {
     }
 
 //Checkbox
-function handleChecked(e){
+function handleCheckboxCheck(e){
   e.preventDefault()
-  setChecked(e.target.checked)
-  
+  setIsCheckboxChecked(current => !current)
 
+  console.log("is it checked?" + e.target.checked);
 }
 
   return (
@@ -226,7 +227,7 @@ function handleChecked(e){
       <tbody>
         {filteredEmployees.map((employee) => (
           <tr key={employee._id}>
-            <td><input type="checkbox" onChange={handleChecked} ></input></td>
+            <td><input type="checkbox" /*onChange={handleCheckboxCheck}*/></input></td>
             <td>{employee.name}</td>
             <td>{employee.level}</td>
             <td>{employee.position}</td>
@@ -248,3 +249,10 @@ function handleChecked(e){
 
 
 export default EmployeeTable;
+
+
+// schema módosítás
+// újra populálni az adatbázis
+// front-end: chechbox defaultchecked (a schemaban az attandence)
+// beckend: az id-val elküldeni a checked-nem checkedet állítani 
+
