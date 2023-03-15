@@ -24,6 +24,22 @@ app.get("/api/employees/:id", async (req, res) => {
   return res.json(employee);
 });
 
+app.get("/api/missingemployees/", async (req, res) => {
+  const employees = await EmployeeModel.find({ present: "false" });
+  const sortedEmployees = employees.sort(function (a, b) {
+    if(a.name < b.name){
+      return -1
+    }
+    else if(a.name > b.name){
+      return 1
+    }
+    else {
+      return 0;
+    }
+  })
+  return res.json(sortedEmployees);
+});
+
 app.post("/api/employees/", async (req, res, next) => {
   const employee = req.body;
 
