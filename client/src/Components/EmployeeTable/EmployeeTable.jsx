@@ -157,7 +157,7 @@ function handleMiddleNameRearrange(e) {
     function handleLevelRearrange(e) {
       e.preventDefault()
       //console.log(employees); 
-      const newSortedEmployees =[...filteredEmployees].sort(function (a, b) {
+     /* const newSortedEmployees =[...filteredEmployees].sort(function (a, b) {
         if(a.level < b.level){
           return -1
         }
@@ -169,7 +169,18 @@ function handleMiddleNameRearrange(e) {
         }
       })
       //console.log(newSortedEmployees);
-      setFilteredEmployees(newSortedEmployees)
+      setFilteredEmployees(newSortedEmployees)*/
+
+      const levelArray = ["Godlike","Expert", "Senior", "Medior", "Junior"]
+       
+      const sortByLevel = (array, sortArray) => {
+        return [...array].sort(
+          (a, b) => sortArray.indexOf(a.level) - sortArray.indexOf(b.level)
+        )
+      }
+      
+      setFilteredEmployees(sortByLevel(filteredEmployees, levelArray))
+      
     }
 
      //  Rearange by Position
