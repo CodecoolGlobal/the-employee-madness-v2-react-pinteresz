@@ -19,7 +19,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
    function handleLevelChange(event){
       setLevel(event.target.value)
       // with toUpperCase it will be case-insensitive
-      const newFilteredEmployees = [...filteredEmployees].filter(
+      const newFilteredEmployees = [...employees].filter(
           (e) => e.level.toUpperCase().includes(event.target.value.toUpperCase())
       )
       // before mapping through to display the employees
@@ -28,12 +28,22 @@ const EmployeeTable = ({ employees, onDelete }) => {
       ) 
     }
 
+    const handleKeyDown = event => {
+      console.log('User pressed: ', event.key);
+  
+      // console.log(message);
+  
+      if (event.key === 'Backspace') {
+        // 👇️ your logic here
+        console.log('Backspace key pressed ✅');
+      }
+    };
    //Filtering by POSITION
    // it reacts:) to te name change in the input field and filters the employees according to that
    function handlePositionChange(event){
       setPosition(event.target.value)
       // with toUpperCase it will be case-insensitive
-      const newFilteredEmployees = [...filteredEmployees].filter(
+      const newFilteredEmployees = [...employees].filter(
           (e) => e.position.toUpperCase().includes(event.target.value.toUpperCase())
       )
       // before mapping through to display the employees
@@ -244,7 +254,7 @@ function handleCheckboxCheck(checked, employee){
             <button onClick={handleLastNameRearrange}>Rearr. by L. Name</button>
           </th>
           <th>
-            <input type="text" placeholder="Filter by Level" value={level} onChange={handleLevelChange}/>
+            <input type="text" placeholder="Filter by Level" value={level} onKeyDown={handleKeyDown} onChange={handleLevelChange}/>
             <button onClick={handleLevelRearrange}>Rearrange by Level</button>
           </th>
           <th>
