@@ -35,7 +35,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
   
       if (event.key === 'Backspace') {
         // 👇️ your logic here
-        console.log('Backspace key pressed ✅');
+        console.log('Backspace key pressed');
       }
     };
    //Filtering by POSITION
@@ -43,7 +43,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
    function handlePositionChange(event){
       setPosition(event.target.value)
       // with toUpperCase it will be case-insensitive
-      const newFilteredEmployees = [...employees].filter(
+      const newFilteredEmployees = [...filteredEmployees].filter(
           (e) => e.position.toUpperCase().includes(event.target.value.toUpperCase())
       )
       // before mapping through to display the employees

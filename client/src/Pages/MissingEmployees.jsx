@@ -10,6 +10,17 @@ const MissingEmployees = () => {
 
     const [loading, setLoading] = useState(true);
     const [employees, setEmployees] = useState(null);
+    const [isShowingClicked, setIsShowingClicked] = useState(false)
+
+    const handleShowingClick = (e) => {
+      e.preventDefault()
+      setIsShowingClicked(prev => !prev)
+    }
+
+    const handleNotShowingClick = (e) => {
+      e.preventDefault()
+      setIsShowingClicked(prev => !prev)
+    }
 
     useEffect(() => {
         fetchMissingEmployees()
@@ -25,22 +36,33 @@ const MissingEmployees = () => {
       }
 
     return(
- <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        {employees.map((employee) => (
-          <tr key={employee._id}>
-            <td>{employee.name}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>    
+      <>
+        {isShowingClicked ? 
+          <div>
+            <button type="button" onClick={handleNotShowingClick}>And back...</button>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Missing?</th>
+                  <th>Are we happy about it?</th>
+                </tr>
+              </thead>
+              <tbody>
+                {employees.map((employee) => (
+                  <tr key={employee._id}>
+                    <td>{employee.name}</td>
+                    <td>Yes</td>
+                    <td>Nope</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div> : <button type="button" onClick={handleShowingClick}>OK, let's see, who is missing!</button>
+        }
+    </>
+      
+ 
   )
 }
 
