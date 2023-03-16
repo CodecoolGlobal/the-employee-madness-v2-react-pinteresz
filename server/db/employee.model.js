@@ -11,6 +11,10 @@ const EmployeeSchema = new Schema({
     type: Boolean,
     default: false
   },
+  equipment: {
+    type: String,
+    default: null
+  },
   created: {
     type: Date,
     default: Date.now,

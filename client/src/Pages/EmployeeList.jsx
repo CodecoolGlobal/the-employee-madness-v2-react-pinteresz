@@ -16,6 +16,8 @@ const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState(null);
 
+  //console.log(employees);
+
   const handleDelete = (id) => {
     deleteEmployee(id);
 
