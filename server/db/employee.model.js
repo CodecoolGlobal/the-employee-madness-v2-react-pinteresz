@@ -13,7 +13,7 @@ const EmployeeSchema = new Schema({
   },
   equipment: {
     type: String,
-    default: null
+    default: undefined
   },
   created: {
     type: Date,

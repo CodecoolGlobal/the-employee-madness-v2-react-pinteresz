@@ -1,24 +1,8 @@
-import {useState, useEffect} from "react";
+import { useState } from "react";
 
-const fetchEquipments = () => {
-  return fetch("/equipments").then((res) => res.json()).then(res => console.log(res));
-};
+const EmployeeForm = ({ onSave, disabled, employee, equipments, onCancel }) => {
 
-
-
-const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
-
-  const [equipments, setEquipments] = useState(null)
-  console.log(equipments);
-
-
-  useEffect(() => {  
-    fetchEquipments()
-      .then(fetchedEquipments => {
-        setEquipments(fetchedEquipments);     
-      })
-  }, []);
-
+    const [selectedEquipment, setSelectedEquipment] = useState("")
 
     const onSubmit = (e) => {
       e.preventDefault();
@@ -69,11 +53,12 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
 
         <div className="control">
           <label htmlFor="equipment">Equipment</label>
-          <select defaultValue={employee ? employee.equipment : null} name="equipment" id="equipment">
-          {[{_id: "3235435", name: "fkjklsdfj"}].map((equipment) => (
-            <option key={equipment._id}>{equipment.name}</option>
+          <select value={selectedEquipment} onChange={e => setSelectedEquipment(e.target.value)} name="equipment" id="equipment">
+            <option>{employee ? employee.equipment : null}</option>
+          {equipments ? equipments.map((equipment) => (
+            <option  key={equipment._id}>{equipment.name}</option>
             ) 
-          )} 
+          ) : "" } 
             
           </select>
         </div>
