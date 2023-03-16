@@ -56,7 +56,7 @@ const EmployeeForm = ({ onSave, disabled, employee, equipments, onCancel }) => {
           <select value={selectedEquipment} onChange={e => setSelectedEquipment(e.target.value)} name="equipment" id="equipment">
             <option>{employee ? employee.equipment : null}</option>
           {equipments ? equipments.map((equipment) => (
-            <option  key={equipment._id}>{equipment.name}</option>
+            <option  key={equipment._id}>Name: {equipment.name}, Type: {equipment.type} </option>
             ) 
           ) : "" } 
             
