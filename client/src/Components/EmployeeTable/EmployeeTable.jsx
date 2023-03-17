@@ -239,7 +239,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
               <button onClick={handleLastNameRearrange}>Rearr. by L. Name</button>
             </th>
             <th>
-              <input type="text" placeholder="Filter by Level" value={level} onKeyDown={handleKeyDown} onChange={handleLevelChange}/>
+              <input type="text" placeholder="Filter by Level" value={level} onChange={handleLevelChange}/>
               <button onClick={handleLevelRearrange}>Rearrange by Level</button>
             </th>
             <th>

@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import Loading from "../Components/Loading";
 import EmployeeTable from "../Components/EmployeeTable";
 
+
 const fetchEmployees = (search) => {
     return fetch(`/employees/${search}`).then((res) => res.json());
   };
-
   
 const deleteEmployee = (id) => {
     return fetch(`/employees/${id}`, { method: "DELETE" }).then((res) =>
@@ -42,7 +42,6 @@ const EmployeeSearch = () => {
   
     return <EmployeeTable employees={employees} onDelete={handleDelete} />;
   };
-
 
 
 export default EmployeeSearch;

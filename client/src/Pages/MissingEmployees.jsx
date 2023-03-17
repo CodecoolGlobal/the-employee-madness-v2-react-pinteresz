@@ -60,10 +60,8 @@ const MissingEmployees = () => {
             </table>
           </div> : <button type="button" onClick={handleShowingClick}>OK, let's see, who is missing!</button>
         }
-    </>
-      
- 
-  )
+       </>
+    )
 }
 
 export default MissingEmployees;

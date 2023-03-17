@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-  function EquipmentCreator(){
+function EquipmentCreator(){
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
@@ -51,7 +51,7 @@ import { useNavigate } from "react-router-dom";
               </div>
                
               <div className="buttons">
-              <button type="submit">Register equipment</button>
+                <button type="submit">Register equipment</button>
               </div>           
             </form>
         </div>

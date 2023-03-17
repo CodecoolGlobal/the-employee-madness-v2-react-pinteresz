@@ -29,9 +29,7 @@ const EquipmentTable = ({ equipments, onDelete }) => {
               <Link >
                 <button type="button">Update</button>
               </Link>
-              <button type="button" onClick={() => onDelete(equipment._id)}>
-                Delete
-              </button>
+                <button type="button" onClick={() => onDelete(equipment._id)}>Delete</button>
             </td>
           </tr>
         ))}

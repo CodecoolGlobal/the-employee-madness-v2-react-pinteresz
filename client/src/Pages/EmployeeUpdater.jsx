@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import EmployeeForm from "../Components/EmployeeForm";
 import Loading from "../Components/Loading";
 
+
 const updateEmployee = (employee) => {
   return fetch(`/api/employees/${employee._id}`, {
     method: "PATCH",
@@ -18,65 +19,56 @@ const fetchEmployee = (id) => {
   return fetch(`/api/employees/${id}`).then((res) => res.json());
 };
 
-
 const fetchEquipments = () => {
   return fetch("/equipments").then((res) => res.json());
 };
 
+
 const EmployeeUpdater = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+    const { id } = useParams();
+    const navigate = useNavigate();
 
-  const [employee, setEmployee] = useState(null);
-  const [equipments, setEquipments] = useState(null)
-  console.log(equipments);
+    const [employee, setEmployee] = useState(null);
+    const [equipments, setEquipments] = useState(null)
+    const [updateLoading, setUpdateLoading] = useState(false);
+    const [employeeLoading, setEmployeeLoading] = useState(true);
 
-  const [updateLoading, setUpdateLoading] = useState(false);
-  const [employeeLoading, setEmployeeLoading] = useState(true);
-
-  useEffect(() => {
-    setEmployeeLoading(true);
-    fetchEmployee(id)
-      .then((employee) => {
-        setEmployee(employee);
-        setEmployeeLoading(false);
-      });
-    fetchEquipments()
-      .then((fetchedEquipments) => {
-        setEquipments(fetchedEquipments);     
-      })
-  }, [id]);
+    useEffect(() => {
+      setEmployeeLoading(true);
+      fetchEmployee(id)
+        .then((employee) => {
+          setEmployee(employee);
+          setEmployeeLoading(false);
+        });
+      fetchEquipments()
+        .then((fetchedEquipments) => {
+          setEquipments(fetchedEquipments);     
+        })
+    }, [id]);
 
 
-  /*useEffect(() => {  
-    fetchEquipments()
-      .then((fetchedEquipments) => {
-        setEquipments(fetchedEquipments);     
-      })
-  }, []);*/
+    const handleUpdateEmployee = (employee) => {
+      setUpdateLoading(true);
+      updateEmployee(employee)
+        .then(() => {
+          setUpdateLoading(false);
+          navigate("/");
+        });
+    };
 
+    
+    if (employeeLoading) {
+      return <Loading />;
+    }
 
-  const handleUpdateEmployee = (employee) => {
-    setUpdateLoading(true);
-    updateEmployee(employee)
-      .then(() => {
-        setUpdateLoading(false);
-        navigate("/");
-      });
+    return (
+      <EmployeeForm
+      employee={employee}
+      equipments={equipments}
+      onSave={handleUpdateEmployee}
+      disabled={updateLoading}
+      onCancel={() => navigate("/")}/>
+    );
   };
-
-  if (employeeLoading) {
-    return <Loading />;
-  }
-
-  return (
-    <EmployeeForm
-    employee={employee}
-    equipments={equipments}
-    onSave={handleUpdateEmployee}
-    disabled={updateLoading}
-    onCancel={() => navigate("/")}/>
-  );
-};
 
 export default EmployeeUpdater;

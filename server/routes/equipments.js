@@ -10,28 +10,28 @@ const { MONGO_URL, PORT = 8080 } = process.env;
 
 EquipmentRouter.get("/", (req, res) => {
     EquipmentModel.find()
-    .then(equipments => res.json(equipments))
-    .then(equipments => console.log(equipments))
-    .catch(err => res.status(400).json("Error"));
+      .then(equipments => res.json(equipments))
+      .then(equipments => console.log(equipments))
+      .catch(err => res.status(400).json("Error"));
 })
 
 
 // Creating new equipment
 EquipmentRouter.post("/register", (req, res) => {
-       const name = req.body.name;
-       const type = req.body.type;
-       const amount = req.body.amount;
+    const name = req.body.name;
+    const type = req.body.type;
+    const amount = req.body.amount;
 
-       const equipment = new EquipmentModel({
-              name,
-              type,
-              amount
-          })
+    const equipment = new EquipmentModel({
+      name,
+      type,
+      amount
+    })
 
-       equipment.save()
-          .then(equipment => res.json("Thank you for your registering an equipment."))
-          .catch(err => res.status(400).json("Error"));
-      })
+    equipment.save()
+        .then(equipment => res.json("Thank you for your registering an equipment."))
+        .catch(err => res.status(400).json("Error"));
+    })
 
 
 // Deleting equipments

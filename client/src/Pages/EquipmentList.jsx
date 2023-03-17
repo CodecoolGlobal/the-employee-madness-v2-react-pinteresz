@@ -32,11 +32,13 @@ const EquipmentList = () => {
       })
   }, []);
 
+
   if (loading) {
     return <Loading />;
   }
 
   return <EquipmentTable equipments={equipments} onDelete={handleDelete} />;
 };
+
 
 export default EquipmentList;
