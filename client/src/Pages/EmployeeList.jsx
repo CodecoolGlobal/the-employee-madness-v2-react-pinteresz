@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Loading from "../Components/Loading";
 import EmployeeTable from "../Components/EmployeeTable";
 
+
 const fetchEmployees = () => {
   return fetch("/api/employees").then((res) => res.json());
 };
@@ -12,9 +13,10 @@ const deleteEmployee = (id) => {
   );
 };
 
+
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
-  const [employees, setEmployees] = useState(null);
+  const [employees, setEmployees] = useState([]);
 
   //console.log(employees);
 
@@ -30,15 +32,23 @@ const EmployeeList = () => {
     fetchEmployees()
       .then((employees) => {
         setLoading(false);
-        setEmployees(employees);
+        setEmployees(employees)      
       })
+     
   }, []);
+
+
 
   if (loading) {
     return <Loading />;
   }
 
-  return <EmployeeTable employees={employees} onDelete={handleDelete} />;
+  return (
+  
+    <EmployeeTable employees={employees} onDelete={handleDelete} />
+    
+  )
+
 };
 
 export default EmployeeList;

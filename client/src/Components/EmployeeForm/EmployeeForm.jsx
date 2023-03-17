@@ -50,19 +50,19 @@ const EmployeeForm = ({ onSave, disabled, employee, equipments, onCancel }) => {
             id="position"
           />
         </div>
-
-        <div className="control">
+        
+        {employee ?
+          <div className="control">
           <label htmlFor="equipment">Equipment</label>
           <select value={selectedEquipment} onChange={e => setSelectedEquipment(e.target.value)} name="equipment" id="equipment">
             <option>{employee ? employee.equipment : null}</option>
           {equipments ? equipments.map((equipment) => (
             <option  key={equipment._id}>Name: {equipment.name}, Type: {equipment.type} </option>
             ) 
-          ) : "" } 
-            
-          </select>
-        </div>
-
+          ) : "" }
+            </select>
+          </div> : null}      
+     
         <div className="buttons">
           <button type="submit" disabled={disabled}>
             {employee ? "Update Employee" : "Create Employee"}
