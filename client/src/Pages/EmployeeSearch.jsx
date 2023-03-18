@@ -34,7 +34,7 @@ const EmployeeSearch = () => {
           setLoading(false);
           setEmployees(employees);
         })
-    }, []);
+    }, [search]);
   
     if (loading) {
       return <Loading />;

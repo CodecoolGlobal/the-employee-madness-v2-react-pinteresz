@@ -24,6 +24,38 @@ app.get("/api/employees/:id", async (req, res) => {
   return res.json(employee);
 });
 
+app.get("/api/name_ascending_order/", async (req, res) => {
+  const employees = await EmployeeModel.find();
+  const sortedEmployees = employees.sort(function (a, b) {
+    if(a.name < b.name){
+      return -1
+    }
+    else if(a.name > b.name){
+      return 1
+    }
+    else {
+      return 0;
+    }
+  })
+  return res.json(sortedEmployees);
+});
+
+app.get("/api/name_descending_order/", async (req, res) => {
+  const employees = await EmployeeModel.find();
+  const sortedEmployees = employees.sort(function (a, b) {
+    if(a.name > b.name){
+      return -1
+    }
+    else if(a.name > b.name){
+      return 1
+    }
+    else {
+      return 0;
+    }
+  })
+  return res.json(sortedEmployees);
+});
+
 app.get("/api/missingemployees/", async (req, res) => {
   const employees = await EmployeeModel.find({ present: "false" });
   const sortedEmployees = employees.sort(function (a, b) {

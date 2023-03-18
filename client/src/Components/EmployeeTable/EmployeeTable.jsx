@@ -7,6 +7,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
     const [filteredEmployees, setFilteredEmployees] = useState(employees);
     const [position, setPosition] = useState("")
     const [level, setLevel] = useState("")
+    const [nameAscendingOrder, setNameAscendingOrder] = useState(true)
     //const [levelAndPosition, setLevelAndPosition] = useState("")
 
     //Filtering by LEVEL
@@ -39,7 +40,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
     function handlePositionChange(event){
         setPosition(event.target.value)
         // with toUpperCase it will be case-insensitive
-        const newFilteredEmployees = [...filteredEmployees].filter(
+        const newFilteredEmployees = [...employees].filter(
             (e) => e.position.toUpperCase().includes(event.target.value.toUpperCase())
         )
         setFilteredEmployees(
@@ -226,6 +227,26 @@ const EmployeeTable = ({ employees, onDelete }) => {
       })
     };
 
+    //Name's button ascending order
+    function handleAscendingOrder(e){
+      e.preventDefault()
+      fetch("/api/name_ascending_order")
+        .then((res) => res.json())
+        .then(result => setFilteredEmployees(result))
+      
+      setNameAscendingOrder(prev => !prev)
+    }
+
+    //Name's button ascending order
+    function handledDescendingOrder(e){
+      e.preventDefault()
+      fetch("/api/name_descending_order")
+        .then((res) => res.json())
+        .then(result => setFilteredEmployees(result))
+
+        setNameAscendingOrder(prev => !prev)
+    }
+
 
     return (
     <div className="EmployeeTable">
@@ -233,7 +254,11 @@ const EmployeeTable = ({ employees, onDelete }) => {
         <thead>
           <tr>
             <th>Present</th>
-            <th>Name
+            <th>
+              {nameAscendingOrder ? 
+              <button onClick={handleAscendingOrder}>Name</button> :
+              <button onClick={handledDescendingOrder}>Name</button>}
+        
               <button onClick={handleFirstNameRearrange}>Rearr. by F. Name</button>
               <button onClick={handleMiddleNameRearrange}>Rearr. by M. Name</button>
               <button onClick={handleLastNameRearrange}>Rearr. by L. Name</button>
