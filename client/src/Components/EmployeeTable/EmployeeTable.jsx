@@ -64,10 +64,10 @@ const EmployeeTable = ({ employees, onDelete }) => {
 
     // <input type="text" placeholder="Filter by Level and Position" value={levelAndPosition} onChange={handlelevelAndPositionChange}/>
 
-    // Rearange by First Name
+    // Rearrange by First Name
     function handleFirstNameRearrange(e) {
       e.preventDefault()
-      console.log(employees); 
+      //console.log(employees); 
       const newSortedEmployees =[...filteredEmployees].sort(function (a, b) {
           if(a.name < b.name){
             return -1
@@ -83,7 +83,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
     }
 
 
-    // Rearange by Last Name
+    // Rearrange by Last Name
     function handleMiddleNameRearrange(e) {
       e.preventDefault()
       
@@ -138,7 +138,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
     }
 
 
-    // Rearange by Last Name
+    // Rearrange by Last Name
     function handleLastNameRearrange(e) {
       e.preventDefault()
       
@@ -157,7 +157,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
       setFilteredEmployees(newSortedEmployees)
     }
 
-    // Rearange by Level
+    // Rearrange by Level
     function handleLevelRearrange(e) {
       e.preventDefault()
       
@@ -185,7 +185,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
       setFilteredEmployees(sortByLevel(filteredEmployees, levelArray))  
     }
 
-    // Rearange by Position
+    // Rearrange by Position
     function handlePositionRearrange(e) {
       e.preventDefault()
      
@@ -291,6 +291,9 @@ const EmployeeTable = ({ employees, onDelete }) => {
                 <button type="button" onClick={() => onDelete(employee._id)}>
                   Delete
                 </button>
+                <Link to={`/kittens/${employee._id}`}>
+                  <button type="button">Kittens</button>
+                </Link>
               </td>
             </tr>
           ))}

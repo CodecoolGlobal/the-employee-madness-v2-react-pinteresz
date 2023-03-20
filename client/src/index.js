@@ -14,6 +14,7 @@ import EquipmentCreator from "./Pages/EquipmentCreator";
 import EmployeeSearch from "./Pages/EmployeeSearch";
 import EquipmentList from "./Pages/EquipmentList";
 import MissingEmployees from "./Pages/MissingEmployees";
+import EmployeesKittens from "./Pages/EmployeesKittens";
 
 import "./index.css";
 import TableTest from "./Pages/TableTest";
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/employees/:search",
         element: <EmployeeSearch />
+      },
+      {
+        path: "/kittens/:id",
+        element: <EmployeesKittens />
       }
     ],
   },

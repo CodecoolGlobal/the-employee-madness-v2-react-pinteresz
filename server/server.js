@@ -96,6 +96,25 @@ app.patch("/api/employees/:id", async (req, res, next) => {
   }
 });
 
+app.patch("/api/kittens/:id", async (req, res, next) =>{
+  console.log(req.params.id);
+  
+    try {
+      const employee = await EmployeeModel.findOneAndUpdate(
+        { _id: req.params.id },
+        { $push: { kittens: req.body } },
+        { new: true }
+      );
+      return res.json(employee);
+      
+    } catch (err) {
+      return next(err);
+    }
+  
+  }
+  )
+
+
 app.delete("/api/employees/:id", async (req, res, next) => {
   try {
     const employee = await EmployeeModel.findById(req.params.id);
