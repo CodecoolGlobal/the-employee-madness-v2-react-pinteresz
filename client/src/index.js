@@ -15,6 +15,7 @@ import EmployeeSearch from "./Pages/EmployeeSearch";
 import EquipmentList from "./Pages/EquipmentList";
 import MissingEmployees from "./Pages/MissingEmployees";
 import EmployeesKittens from "./Pages/EmployeesKittens";
+import EmployeesTopPaid from "./Pages/EmployeesTopPaid";
 
 import "./index.css";
 import TableTest from "./Pages/TableTest";
@@ -54,7 +55,12 @@ const router = createBrowserRouter([
       {
         path: "/kittens/:id",
         element: <EmployeesKittens />
+      },
+      {
+        path: "/top-paid",
+        element: <EmployeesTopPaid />
       }
+
     ],
   },
   {

@@ -29,6 +29,27 @@ app.get("/api/kittens/:id", async (req, res) => {
   return res.json(employee);
 });
 
+app.get("/api/top-paid/", async (reg, res) => {
+  const employees = await EmployeeModel.find();
+  const sortedEmployees = employees.sort(function (a, b) {
+    if(a.salary > b.salary){
+      return -1
+    }
+    else if(a.salary > b.salary){
+      return 1
+    }
+    else {
+      return 0;
+    }
+  })
+
+  const highestPaidEmployees = sortedEmployees.slice(0, 3)
+
+  return res.json(highestPaidEmployees);
+})
+
+
+
 app.get("/api/name_ascending_order/", async (req, res) => {
   const employees = await EmployeeModel.find();
   const sortedEmployees = employees.sort(function (a, b) {
