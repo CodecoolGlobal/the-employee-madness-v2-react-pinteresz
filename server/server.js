@@ -24,6 +24,11 @@ app.get("/api/employees/:id", async (req, res) => {
   return res.json(employee);
 });
 
+app.get("/api/kittens/:id", async (req, res) => {
+  const employee = await EmployeeModel.findById(req.params.id);
+  return res.json(employee);
+});
+
 app.get("/api/name_ascending_order/", async (req, res) => {
   const employees = await EmployeeModel.find();
   const sortedEmployees = employees.sort(function (a, b) {

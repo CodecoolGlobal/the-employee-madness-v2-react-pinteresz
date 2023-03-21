@@ -11,6 +11,7 @@ const EmployeeSchema = new Schema({
     type: Boolean,
     default: false
   },
+  salary: Number,
   equipment: {
     type: String,
     default: undefined

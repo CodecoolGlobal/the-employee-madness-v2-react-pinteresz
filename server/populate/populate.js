@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const names = require("./names.json");
 const levels = require("./levels.json");
 const positions = require("./positions.json");
+const salaries = require("./positions.json");
 const EmployeeModel = require("../db/employee.model");
 
 const mongoUrl = process.env.MONGO_URL;
@@ -24,6 +25,7 @@ const populateEmployees = async () => {
     name,
     level: pick(levels),
     position: pick(positions),
+    salary: Math.floor(Math.random() * 60) + 20
   }));
 
   await EmployeeModel.create(...employees);
