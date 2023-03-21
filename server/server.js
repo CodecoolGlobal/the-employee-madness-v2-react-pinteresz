@@ -173,3 +173,7 @@ app.use("/equipments", EquipmentRouter) // to be able to use our router we need 
 // EmployeesSearch router
 const EmployeesSearchRouter = require("./routes/employees")
 app.use("/employees", EmployeesSearchRouter)
+
+// Tool router
+const ToolRouter = require("./routes/tools")
+app.use("/tools", ToolRouter)

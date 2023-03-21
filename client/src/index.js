@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import Layout from "./Pages/Layout";
 import LayoutEquipment from "./Pages/LayoutEquipment";
 import LayoutMissingEmployees from "./Pages/LayoutMissingEmployees/index";
+import LayoutTools from "./Pages/LayoutTools/index";
 import ErrorPage from "./Pages/ErrorPage";
 import EmployeeList from "./Pages/EmployeeList";
 import EmployeeCreator from "./Pages/EmployeeCreator";
@@ -16,6 +17,7 @@ import EquipmentList from "./Pages/EquipmentList";
 import MissingEmployees from "./Pages/MissingEmployees";
 import EmployeesKittens from "./Pages/EmployeesKittens";
 import EmployeesTopPaid from "./Pages/EmployeesTopPaid";
+import Tools from "./Pages/Tools";
 
 import "./index.css";
 import TableTest from "./Pages/TableTest";
@@ -87,6 +89,17 @@ const router = createBrowserRouter([
       {
         path: "/missing",
         element: <MissingEmployees/>,
+      }
+    ]
+  },
+  {
+    path: "/tools",
+    element: <LayoutTools/>,
+    errorElement: <ErrorPage/>,
+    children: [
+      {
+        path: "/tools",
+        element: <Tools/>,
       }
     ]
   }
