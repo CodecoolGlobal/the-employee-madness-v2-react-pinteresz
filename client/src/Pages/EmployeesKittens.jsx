@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 
-const fetchEmployees = (id) => {
+const fetchEmployeeForKittens = (id) => {
     return fetch(`/api/kittens/${id}`).then((res) => res.json());
   };
 
@@ -13,28 +13,25 @@ function EmployeesKittens(){
     const {id} = useParams();
 
     useEffect(() => {
-        fetchEmployees(`${id}`)
-        /*fetch(`/api/kittens/${id}`)
-        .then((res) => res.json())*/
+        fetchEmployeeForKittens(`${id}`)
         .then(employee => setKittens(employee.kittens))
     }, [])
     
 
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault()
 
-        const data = {name, weight}
+        const data = { name, weight }
         //console.log(data);
         //console.log(id);
-    
         return fetch(`/api/kittens/${id}`, {
             method: "PATCH",
             headers: {
-              "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
-          }).then((res) => res.json())
-          .then(employee => setKittens(employee.kittens));
+        }).then((res) => res.json())
+            .then(employee => setKittens(employee.kittens));
     }
 
 

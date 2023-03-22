@@ -45,5 +45,20 @@ EquipmentRouter.delete("/:id", async (req, res, next) => {
     }
   });
 
+  // Updating equipments
+  EquipmentRouter.patch("/update/:id", async (req, res, next) => {
+    try {
+      const equipment = await EquipmentModel.findOneAndUpdate(
+        { _id: req.params.id },
+        { $set: { ...req.body } },
+        { new: true }
+      );
+      return res.json(equipment);
+    } catch (err) {
+      return next(err);
+    }
+  });
+
+
 
 module.exports = EquipmentRouter // exporting our router

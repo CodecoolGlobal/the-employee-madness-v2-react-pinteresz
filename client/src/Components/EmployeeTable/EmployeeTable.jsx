@@ -310,7 +310,12 @@ const EmployeeTable = ({ employees, setEmployees }) => {
                 <Link to={`/update/${employee._id}`}>
                   <button type="button">Update</button>
                 </Link>
-                <button type="button" onClick={() => handleDelete(employee._id)}>
+                <button type="button" onClick={() => {
+                   const confirmBox = window.confirm("are you sure you want to delete this employee?")
+                   if(confirmBox === true){
+                    handleDelete(employee._id)
+                   }}
+                 }>
                   Delete
                 </button>
                 <Link to={`/kittens/${employee._id}`}>

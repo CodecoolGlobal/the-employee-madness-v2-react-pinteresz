@@ -49,7 +49,6 @@ app.get("/api/top-paid/", async (reg, res) => {
 })
 
 
-
 app.get("/api/name_ascending_order/", async (req, res) => {
   const employees = await EmployeeModel.find();
   const sortedEmployees = employees.sort(function (a, b) {
@@ -124,8 +123,21 @@ app.patch("/api/employees/:id", async (req, res, next) => {
 
 app.patch("/api/kittens/:id", async (req, res, next) =>{
   console.log(req.params.id);
-  
+
+  //Option A with spread operator
     try {
+      const employee = await EmployeeModel.findById(req.params.id);
+      employee.kittens = [...employee.kittens, req.body]
+      await employee.save()
+
+      return res.json(employee)
+    } 
+    catch (err) {
+      return next(err);
+    }
+
+  // Option B with $push
+    /*try {
       const employee = await EmployeeModel.findOneAndUpdate(
         { _id: req.params.id },
         { $push: { kittens: req.body } },
@@ -135,7 +147,7 @@ app.patch("/api/kittens/:id", async (req, res, next) =>{
       
     } catch (err) {
       return next(err);
-    }
+    }*/
   
   }
   )

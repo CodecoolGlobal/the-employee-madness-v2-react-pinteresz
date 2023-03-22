@@ -15,6 +15,7 @@ import EquipmentCreator from "./Pages/EquipmentCreator";
 import EmployeeSearch from "./Pages/EmployeeSearch";
 import EquipmentList from "./Pages/EquipmentList";
 import MissingEmployees from "./Pages/MissingEmployees";
+import EquipmentUpdater from "./Pages/EquipmentUpdater";
 import EmployeesKittens from "./Pages/EmployeesKittens";
 import EmployeesTopPaid from "./Pages/EmployeesTopPaid";
 import Tools from "./Pages/Tools";
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
         path: "/equipments/register",
         element: <EquipmentCreator />,
       },
+      {
+        path: "/equipments/update/:id",
+        element: <EquipmentUpdater />,
+      }
     ]
 
   },
