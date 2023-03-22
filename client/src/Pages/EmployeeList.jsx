@@ -7,24 +7,24 @@ const fetchEmployees = () => {
   return fetch("/api/employees").then((res) => res.json());
 };
 
-const deleteEmployee = (id) => {
+/*const deleteEmployee = (id) => {
   return fetch(`/api/employees/${id}`, { method: "DELETE" }).then((res) =>
     res.json()
   );
-};
+};*/
 
 
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState([]);
 
-  const handleDelete = (id) => {
-    deleteEmployee(id);
+  // const handleDelete = (id) => {
+  //   deleteEmployee(id);
 
-    setEmployees((employees) => {
-      return employees.filter((employee) => employee._id !== id);
-    });
-  };
+  //   setEmployees((employees) => {
+  //     return employees.filter((employee) => employee._id !== id);
+  //   });
+  // };
 
   useEffect(() => {
     fetchEmployees()
@@ -40,9 +40,11 @@ const EmployeeList = () => {
     return <Loading />;
   }
 
-  return <EmployeeTable employees={employees} onDelete={handleDelete} />
+  return <EmployeeTable employees={employees} setEmployees={setEmployees} />
 
 
 };
 
 export default EmployeeList;
+
+//onDelete={handleDelete}

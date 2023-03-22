@@ -2,7 +2,29 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./EmployeeTable.css";
 
-const EmployeeTable = ({ employees, onDelete }) => {
+const deleteEmployee = (id) => {
+  return fetch(`/api/employees/${id}`, { method: "DELETE" }).then((res) =>
+    res.json()
+  );
+};
+
+const EmployeeTable = ({ employees, setEmployees }) => {
+
+  const handleDelete = (id) => {
+    deleteEmployee(id);
+
+    // setEmployees((employees) => {
+    //   employees.filter((employee) => employee._id !== id);  
+    
+    // });
+
+    setFilteredEmployees((employees) => {
+      return employees.filter((employee) => employee._id !== id);     
+    });
+    
+    console.log(filteredEmployees);
+  };
+
 
     const [filteredEmployees, setFilteredEmployees] = useState(employees);
     const [position, setPosition] = useState("")
@@ -288,7 +310,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
                 <Link to={`/update/${employee._id}`}>
                   <button type="button">Update</button>
                 </Link>
-                <button type="button" onClick={() => onDelete(employee._id)}>
+                <button type="button" onClick={() => handleDelete(employee._id)}>
                   Delete
                 </button>
                 <Link to={`/kittens/${employee._id}`}>
