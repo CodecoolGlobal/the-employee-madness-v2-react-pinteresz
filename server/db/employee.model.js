@@ -22,6 +22,12 @@ const EmployeeSchema = new Schema({
      weight: Number
     }
   ],
+  work_log: [
+    {
+      working_hours: Number,
+      label: String
+    }
+  ],
   created: {
     type: Date,
     default: Date.now,

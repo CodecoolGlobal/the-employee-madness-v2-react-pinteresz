@@ -121,6 +121,37 @@ app.patch("/api/employees/:id", async (req, res, next) => {
   }
 });
 
+app.patch("/api/work_log/:id", async (req, res, next) =>{
+  console.log(req.params.id);
+
+  //Option A with spread operator
+    try {
+      const employee = await EmployeeModel.findById(req.params.id);
+      employee.work_log = [...employee.work_log, req.body]
+      await employee.save()
+
+      return res.json(employee)
+    } 
+    catch (err) {
+      return res.status(404).json({message: "problem"});
+    }
+
+  // Option B with $push
+    /*try {
+      const employee = await EmployeeModel.findOneAndUpdate(
+        { _id: req.params.id },
+        { $push: { kittens: req.body } },
+        { new: true }
+      );
+      return res.json(employee);
+      
+    } catch (err) {
+      return next(err);
+    }*/
+  
+  }
+  )
+
 app.patch("/api/kittens/:id", async (req, res, next) =>{
   console.log(req.params.id);
 

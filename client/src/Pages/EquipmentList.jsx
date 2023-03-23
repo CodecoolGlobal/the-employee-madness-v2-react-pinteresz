@@ -6,6 +6,7 @@ const fetchEquipments = () => {
   return fetch("/equipments").then((res) => res.json());
 };
 
+
 const deleteEquipment = (id) => {
   return fetch(`/equipments/${id}`, { method: "DELETE" }).then((res) =>
     res.json()

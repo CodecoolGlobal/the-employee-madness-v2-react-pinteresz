@@ -19,6 +19,7 @@ import EquipmentUpdater from "./Pages/EquipmentUpdater";
 import EmployeesKittens from "./Pages/EmployeesKittens";
 import EmployeesTopPaid from "./Pages/EmployeesTopPaid";
 import Tools from "./Pages/Tools";
+import EmployeesWorkLog from "./Pages/EmployeesWorkLog";
 
 import "./index.css";
 import TableTest from "./Pages/TableTest";
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/top-paid",
         element: <EmployeesTopPaid />
+      },
+      {
+        path: "/work_log/:id",
+        element: <EmployeesWorkLog/>
       }
 
     ],
