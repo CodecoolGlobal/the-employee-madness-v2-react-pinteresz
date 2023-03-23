@@ -37,6 +37,15 @@ ToolRouter.post("/register", (req, res) => {
         .catch(err => res.status(400).json("Error"));
     })
 
-
+// Deleting tool
+ToolRouter.delete("/:id", async (req, res, next) => {
+    try {
+      const tool = await ToolModel.findById(req.params.id);
+      const deleted = await tool.delete();
+      return res.json(deleted);
+    } catch (err) {
+      return next(err);
+    }
+  });
 
 module.exports = ToolRouter // exporting our router
